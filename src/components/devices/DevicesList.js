@@ -17,9 +17,11 @@ const DevicesList = ({devices = []}) => {
   const [deviceToEdit, setDeviceToEdit] = useState(null);
 
   // Device Component Handlers
-  const handleDeviceDelete = (deviceToDelete) => {
+  const handleDeviceDelete = async (deviceToDelete) => {
     console.log('Device delete', deviceToDelete);
+    await deviceContext.deleteDevice(deviceToDelete.id);
   }
+  
   const handleDeviceEdit = (deviceToEdit) => {
     console.log('Device edit', deviceToEdit);
     setDeviceToEdit(deviceToEdit);

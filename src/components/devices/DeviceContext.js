@@ -5,7 +5,8 @@ const DeviceContext = createContext({
   filterOptions: [],
   sortOptions: [],
   addDevice: () => {},
-  updateDevice: () => {}
+  updateDevice: () => {},
+  deleteDevice: () => {}
 });
 
 export const DeviceContextProvider = (props) => {
@@ -83,10 +84,21 @@ export const DeviceContextProvider = (props) => {
     return data;
   }
 
+  const deleteDevice = async (id) => {
+    const response = await fetch(`http://localhost:3000/devices/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      } 
+    });
+    // Automatically refresh all context data
+    setShouldGetDevices(true);
+  }
+
 
   return (
     <DeviceContext.Provider value={{
-      devices, systemTypes, sortOptions, addDevice, updateDevice
+      devices, systemTypes, sortOptions, addDevice, updateDevice, deleteDevice
 
     }}>
       {props.children}
