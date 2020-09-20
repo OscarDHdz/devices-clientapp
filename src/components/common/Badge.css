@@ -1,0 +1,19 @@
+.badge {
+  background-color: #2196f3;
+  color: white;
+  padding: 7px 14px;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 1px;
+}
+
+.badge:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #1976d2;
+}
+
+.badgeDeleteIcon {
+  margin-left: 14px;
+  font-weight: bolder;
+}
