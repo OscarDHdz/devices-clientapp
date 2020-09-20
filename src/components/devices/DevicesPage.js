@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import DevicesList from './DevicesList';
 
 const DevicesPage = ( ) => {
   return (
-    <h1>Devices Page Works!</h1>
+    <Fragment>
+
+      <button>Add New Device</button>
+      <DevicesList></DevicesList>
+
+    </Fragment>
   )
 }
 

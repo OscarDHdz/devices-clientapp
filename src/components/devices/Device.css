@@ -1,0 +1,23 @@
+.card {
+  background-color: white;
+  padding: 14px;
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.cardContent {
+  display: inline-block;
+  width: 85%;
+}
+
+.cardActions {
+  display: inline-block;
+  width: 15%;
+}
+
+.cardActionButton {
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
