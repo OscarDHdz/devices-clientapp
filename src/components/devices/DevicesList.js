@@ -4,6 +4,7 @@ import Alert from '../common/Alert';
 import Device from './Device';
 import DeviceContext from './DeviceContext';
 import './DeviceList.css';
+import DeviceModal from './DeviceModal';
 
 const DevicesList = ({devices = []}) => {
   const deviceContext = useContext(DeviceContext);
@@ -12,6 +13,8 @@ const DevicesList = ({devices = []}) => {
   const [typeFilter, setTypeFilter] = useState('');
   const [sortBy, setSortBy] = useState('');
   const [sortDirection] = useState('asc');
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [deviceToEdit, setDeviceToEdit] = useState(null);
 
   // Device Component Handlers
   const handleDeviceDelete = (deviceToDelete) => {
@@ -19,7 +22,16 @@ const DevicesList = ({devices = []}) => {
   }
   const handleDeviceEdit = (deviceToEdit) => {
     console.log('Device edit', deviceToEdit);
+    setDeviceToEdit(deviceToEdit);
+    setOpenEditModal(true);
   }
+
+  const handleAfterSubmit = (data) => {
+    // Close Modal
+    setOpenEditModal(false);
+    setDeviceToEdit(null);
+  }
+
 
   /**
    * This function returns what should be visible on screen depending on 
@@ -42,6 +54,13 @@ const DevicesList = ({devices = []}) => {
 
   return (
     <Fragment>
+      <DeviceModal
+        open={openEditModal}
+        device={deviceToEdit}
+        onClose={() => setOpenEditModal(false)}
+        afterSubmit={handleAfterSubmit}
+      ></DeviceModal>
+
       <div className="deviceListToolbar">
         <div className="deviceListFilterField">
           <label>Device Type:</label>

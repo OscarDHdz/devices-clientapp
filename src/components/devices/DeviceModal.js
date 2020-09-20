@@ -26,6 +26,17 @@ const DeviceModal = (props) => {
   }, [open]);
 
   /**
+   * Effect that fillds form with device data
+   */
+  useEffect(() => {
+    if (device) {
+      setType(device.type);
+      setCapacity(device.hdd_capacity);
+      setName(device.system_name);
+    }
+  }, [device])
+
+  /**
    * Clears all form fields
    */
   const resetForm = () => {
@@ -43,6 +54,8 @@ const DeviceModal = (props) => {
 
     // If device, is an Update
     if (device) {
+      const updatedDevice = await deviceContext.updateDevice(device.id, payload);
+      console.log('Updated Device', updatedDevice);
 
     } else { // else, it is adding
       // Add new device

@@ -11,7 +11,6 @@ const DevicesPage = ( ) => {
 
 
   const handleAfterSubmit = (data) => {
-    console.log('Should Submit', data);
     // Close Modal
     setOpenAddModal(false);
   }

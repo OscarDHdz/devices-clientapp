@@ -3,7 +3,9 @@ import React, { createContext, useEffect, useState } from 'react';
 const DeviceContext = createContext({
   devices: [],
   filterOptions: [],
-  sortOptions: []
+  sortOptions: [],
+  addDevice: () => {},
+  updateDevice: () => {}
 });
 
 export const DeviceContextProvider = (props) => {
@@ -54,7 +56,7 @@ export const DeviceContextProvider = (props) => {
     });
 
     const data = await response.json();
-    console.log(data);
+    console.log('Added device:', data);
 
     // Automatically refresh all context data
     setShouldGetDevices(true);
@@ -63,10 +65,28 @@ export const DeviceContextProvider = (props) => {
   }
 
 
+  const updateDevice = async (id, payload) => {
+    const response = await fetch(`http://localhost:3000/devices/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json'
+      } 
+    });
+
+    const data = await response.json();
+    console.log('Updated device:', data);
+
+    // Automatically refresh all context data
+    setShouldGetDevices(true);
+
+    return data;
+  }
+
 
   return (
     <DeviceContext.Provider value={{
-      devices, systemTypes, sortOptions, addDevice
+      devices, systemTypes, sortOptions, addDevice, updateDevice
 
     }}>
       {props.children}
