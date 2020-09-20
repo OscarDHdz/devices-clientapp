@@ -16,6 +16,7 @@ export const DeviceContextProvider = (props) => {
     { value: 'WINDOWS_SERVER', display: 'Windows Server' }
   ]);
   const [sortOptions] = useState([
+    { value: '', display: '-' },
     { value: 'hdd_capacity', display: 'HDD Capacity' },
     { value: 'system_name', display: 'System Name' }
   ]);
