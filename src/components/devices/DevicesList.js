@@ -28,7 +28,7 @@ const DevicesList = ({devices = []}) => {
       console.error('Failed to delete Device:', err);
     }
   }
-  
+
   const handleDeviceEdit = (deviceToEdit) => {
     console.log('Device edit', deviceToEdit);
     setDeviceToEdit(deviceToEdit);

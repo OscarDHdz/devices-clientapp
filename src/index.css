@@ -32,6 +32,11 @@ button.primary:hover {
   color: white;
   background-color: #1976d2;
 }
+button.primary:focus,
+button.primary:active {
+  color: white;
+  background-color: #165ba0;
+}
 button.danger {
   color: #e91e63;
   border-color: #e91e63;
@@ -40,9 +45,30 @@ button.danger:hover {
   color: white;
   background-color: #d32f2f;
 }
+button.danger:focus,
+button.danger:active {
+  color: white;
+  background-color: #ad2929;
+}
+
 
 
 button:hover {
   cursor: pointer;
   background-color:  rgba(0,0,0,0.1);
+}
+button:focus,
+button:active {
+  outline: none;
+}
+button:disabled {
+  border-color: black;
+  color: rgb(231, 229, 229);
+  background-color: rgb(182, 182, 182);;
+}
+button:disabled:hover {
+  cursor: not-allowed;
+  border-color: black;
+  color: rgb(231, 229, 229);
+  background-color: rgb(182, 182, 182);;
 }

@@ -104,36 +104,50 @@ const DeviceModal = (props) => {
                 <hr/>
 
                 <div className="modalContent">
-                  
+                  {/* System Name */}
                   <div className="fieldRow">
-                    <label>System Name*</label>
-                    <input placeholder="Enter System Name"
-                      value={name}
-                      onChange={event => setName(event.target.value)}
-                      type="text"></input>
+                    <div  className="labelBox">
+                      <label>System Name*</label>
+                    </div>
+                    <div className="fieldBox">
+                      <input placeholder="Enter System Name"
+                        value={name}
+                        onChange={event => setName(event.target.value)}
+                        type="text"></input>
+                    </div>
                   </div>
-
+                  {/* System Type */}
                   <div className="fieldRow">
-                    <label>Type*</label>
-                    <select
-                      value={type}
-                      onChange={event => setType(event.target.value)}
-                    >
-                    <option key="" value=""></option>
-                      {
-                        deviceContext.systemTypes.map(type => (
-                          <option key={type.value} value={type.value}>{type.display}</option>
-                        ))
-                      }
-                    </select>
+                    <div  className="labelBox">
+                      <label>Type*</label>
+                    </div>
+                    <div className="fieldBox">
+                      <select
+                        value={type}
+                        className="field"
+                        onChange={event => setType(event.target.value)}
+                      >
+                      <option key="" value=""></option>
+                        {
+                          deviceContext.systemTypes.map(type => (
+                            <option key={type.value} value={type.value}>{type.display}</option>
+                          ))
+                        }
+                      </select>
+                    </div>
                   </div>
-
+                  {/* HDD Cap */}
                   <div className="fieldRow">
-                    <label>HDD Capacity (GB)*</label>
-                    <input placeholder="Enter HDD Capacity"
-                      value={capacity}
-                      onChange={event => setCapacity(event.target.value)}
-                      type="number"></input>
+                    <div  className="labelBox">
+                      <label>HDD Capacity (GB)*</label>
+                    </div>
+                    <div className="fieldBox">
+                      <input placeholder="Enter HDD Capacity"
+                        value={capacity}
+                        className="field"
+                        onChange={event => setCapacity(event.target.value)}
+                        type="number"></input>
+                    </div>
                   </div>
 
 
@@ -141,8 +155,9 @@ const DeviceModal = (props) => {
                 
                 <hr/>
                 <div className="modalActions">
-                  <button onClick={onClose}>Cancel</button>
+                  <button onClick={onClose} className="danger">Cancel</button>
                   <button onClick={handleOnSubmit}
+                    className="primary"
                     disabled={isFormDisabled()}>
                     Submit
                   </button>
