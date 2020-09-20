@@ -54,13 +54,20 @@ const DeviceModal = (props) => {
 
   }
 
+  /**
+   * Returns true if all fields are valid
+   */
+  const isFormDisabled = () => {
+    return type === '' || capacity === '' || name === '';
+  }
+
   return (
     <Fragment>
       {
         open ?
         (
           <Fragment>
-            <div className="modalMask">
+            <div className="modalMask" onClick={onClose}>
               asad
             </div>
             <div className="modalContainerPivot">
@@ -110,7 +117,10 @@ const DeviceModal = (props) => {
                 <hr/>
                 <div className="modalActions">
                   <button onClick={onClose}>Cancel</button>
-                  <button onClick={handleOnSubmit}>Submit</button>
+                  <button onClick={handleOnSubmit}
+                    disabled={isFormDisabled()}>
+                    Submit
+                  </button>
                 </div>
 
 
