@@ -25,7 +25,7 @@ const DevicesPage = ( ) => {
 
       </DeviceModal>
       <div>
-        <button style={{float: 'right'}} onClick={() => setOpenAddModal(true)} >Add New Device</button>
+        <button style={{float: 'right'}} className="primary" onClick={() => setOpenAddModal(true)} >Add New Device</button>
         <h1>Devices</h1>
       </div>
       <DevicesList

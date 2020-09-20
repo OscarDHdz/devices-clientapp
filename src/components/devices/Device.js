@@ -1,6 +1,19 @@
 import React, { Fragment } from 'react';
 import './Device.css';
 
+const addComaToNumber = (value) => {
+  const strVal = `${value}`;
+  let strOut = '';
+  for (let i = strVal.length - 1, j = 0; i >= 0; i--, j++) {
+
+
+    strOut = strVal[i] + ( j !== 0 && j % 3 === 0 ? ',' : '') + strOut;
+    
+  }
+  return strOut;
+}
+
+
 const Device = ({device, onEditClick, onDeleteClick}) => {
   const {id, system_name, type, hdd_capacity} = device;
   return (
@@ -8,25 +21,25 @@ const Device = ({device, onEditClick, onDeleteClick}) => {
       <div className="card">
         <div className="cardContent">
           <div className="cardRow">
-            <span>{system_name}</span>
+            <span className="deviceName">{system_name}</span>
           </div>
           <div className="cardRow">
-            <span>{type}</span>
+            <span className="deviceType">{type}</span>
           </div>
           <div className="cardRow">
-            <span>{hdd_capacity}</span>
+            <span className="deviceCapacity">{addComaToNumber(hdd_capacity)} GB</span>
           </div>
           <div className="cardRow">
-            <span>{id}</span>
+            <span className="deviceId">ID: {id}</span>
           </div>
         </div>
         <div  className="cardActions">
 
-          <button className="cardActionButton"
+          <button className="cardActionButton danger"
             onClick={() => onEditClick(device)}>
             Edit
           </button>
-          <button className="cardActionButton"
+          <button className="cardActionButton primary"
             onClick={() => onDeleteClick(device)}>
             Delete
           </button>

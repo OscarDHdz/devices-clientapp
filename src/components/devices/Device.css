@@ -1,6 +1,10 @@
 .card {
+  position: relative;
+  display: flex;
   background-color: white;
   padding: 14px;
+  height: 82px;
+  margin-bottom: 7px;
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -9,15 +13,37 @@
 .cardContent {
   display: inline-block;
   width: 85%;
+  height: 82px;
 }
 
 .cardActions {
   display: inline-block;
   width: 15%;
+  height: 82px;
 }
 
 .cardActionButton {
   background-color: transparent;
   display: block;
   width: 100%;
+  margin-bottom: 7px;
+}
+
+.cardRow .deviceName {
+  font-weight: bolder;
+  font-size: 1.1em;
+}
+
+.cardRow .deviceType {
+}
+
+.cardRow .deviceCapacity {
+}
+
+.cardRow .deviceId {
+  font-style: italic;
+  font-size: 0.8em;
+  position: absolute;
+  bottom: 7px;
+  left: 14px;
 }
