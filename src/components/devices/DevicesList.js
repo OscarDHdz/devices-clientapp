@@ -19,7 +19,14 @@ const DevicesList = ({devices = []}) => {
   // Device Component Handlers
   const handleDeviceDelete = async (deviceToDelete) => {
     console.log('Device delete', deviceToDelete);
-    await deviceContext.deleteDevice(deviceToDelete.id);
+    try {
+      const response = await deviceContext.deleteDevice(deviceToDelete.id);
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+    } catch (err) {
+      console.error('Failed to delete Device:', err);
+    }
   }
   
   const handleDeviceEdit = (deviceToEdit) => {

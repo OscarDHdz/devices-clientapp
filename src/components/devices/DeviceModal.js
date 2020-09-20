@@ -51,19 +51,31 @@ const DeviceModal = (props) => {
   const handleOnSubmit = async () => {
 
     const payload = {system_name: name, type, hdd_capacity: capacity};
+    let success = true;
 
     // If device, is an Update
     if (device) {
-      const updatedDevice = await deviceContext.updateDevice(device.id, payload);
-      console.log('Updated Device', updatedDevice);
+      try {
+        const updatedDevice = await deviceContext.updateDevice(device.id, payload);
+        console.log('Updated Device', updatedDevice);
+      } catch (err) {
+        console.error('Failed to Update Device:', err);
+        success = false;
+
+      }
 
     } else { // else, it is adding
       // Add new device
-      const addedDevice = await deviceContext.addDevice(payload);
-      console.log('Added Device', addedDevice);
+      try {
+        const addedDevice = await deviceContext.addDevice(payload);
+        console.log('Added Device', addedDevice);
+      } catch (err) {
+        console.error('Failed to Add a new Device:', err);
+        success = false;
+      }
     }
     // Handle After Submit
-    afterSubmit();
+    afterSubmit(success);
 
   }
 
@@ -79,7 +91,7 @@ const DeviceModal = (props) => {
       {
         open ?
         (
-          <Fragment>
+          <div className="modal">
             <div className="modalMask" onClick={onClose}>
               asad
             </div>
@@ -141,7 +153,7 @@ const DeviceModal = (props) => {
 
               </div>
             </div>
-          </Fragment>
+          </div>
         )
         :
         ''

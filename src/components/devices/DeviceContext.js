@@ -24,75 +24,123 @@ export const DeviceContextProvider = (props) => {
   ]);
   
   
-
   /** 
    * Effect that fetches all devices from API
    */
   useEffect(() => {
     if (shouldGetDevices) {
       const fetchDevices = async () => {
-        const response = await fetch('http://localhost:3000/devices', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
+        try {
+          const response = await fetch('http://localhost:3000/devices', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          if (!response.ok) {
+            throw new Error(response.statusText);
           }
-        })
-        const fetchedDevices = await response.json();
-        console.log('Got this;', fetchedDevices)
-        setDevices(fetchedDevices);
+          const fetchedDevices = await response.json();
+          console.log('Got this;', fetchedDevices)
+          setDevices(fetchedDevices);
+        } catch (err) {
+          console.error('Failed to Get Devices:', err);
+        }
         setShouldGetDevices(false);
       }
       fetchDevices();
     }
   }, [shouldGetDevices]);
 
-
+  /**
+   * Async call for adding a Device to API
+   * @param {object} payload - device data to be added
+   */
   const addDevice = async (payload) => {
-    const response = await fetch('http://localhost:3000/devices', {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json'
-      } 
-    });
+    try {
+      const response = await fetch('http://localhost:3000/devices', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json'
+        } 
+      });
 
-    const data = await response.json();
-    console.log('Added device:', data);
+      
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+  
+      const data = await response.json();
+      console.log('Added device:', data);
+      // Automatically refresh all context data
+      setShouldGetDevices(true);
+      return data;
 
-    // Automatically refresh all context data
-    setShouldGetDevices(true);
+    } catch (err) {
+      throw err;
+    }
 
-    return data;
+
+
   }
 
 
+  /**
+   * Async call for updating a device by id
+   * @param {string} id - device's id to be updated
+   * @param {object} payload - new device data
+   */
   const updateDevice = async (id, payload) => {
-    const response = await fetch(`http://localhost:3000/devices/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json'
-      } 
-    });
-
-    const data = await response.json();
-    console.log('Updated device:', data);
-
-    // Automatically refresh all context data
-    setShouldGetDevices(true);
-
-    return data;
+    try {
+      const response = await fetch(`http://localhost:3000/devices/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json'
+        } 
+      });
+  
+      
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+  
+      const data = await response.json();
+      console.log('Updated device:', data);
+  
+      // Automatically refresh all context data
+      setShouldGetDevices(true);
+  
+      return data;
+    } catch (err) {
+      throw err;
+    }
   }
 
+  /**
+   * Async call for deleting a device by id
+   * @param {*} id - device's id to be deleted
+   */
   const deleteDevice = async (id) => {
-    const response = await fetch(`http://localhost:3000/devices/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      } 
-    });
-    // Automatically refresh all context data
-    setShouldGetDevices(true);
+    try {
+      const response = await fetch(`http://localhost:3000/devices/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        } 
+      });
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      // Automatically refresh all context data
+      setShouldGetDevices(true);
+
+    } catch (err) {
+      throw err;
+    }
   }
 
 

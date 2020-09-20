@@ -1,3 +1,7 @@
+.modal {
+  z-index: 1;
+}
+
 .modalMask {
   position: fixed;
   top: 0;
@@ -5,12 +9,14 @@
   background-color: rgba(0,0,0,0.5);
   width: 100vw;
   height: 100vh;
+  z-index: 1;
 }
 
 .modalContainerPivot {
   position: absolute;
   top: 22%;
   left: 50%;
+  z-index: 2;
 }
 .modalContainer {
   position: absolute;

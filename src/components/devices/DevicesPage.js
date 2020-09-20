@@ -10,9 +10,11 @@ const DevicesPage = ( ) => {
   const [openAddModal, setOpenAddModal] = useState(false);
 
 
-  const handleAfterSubmit = (data) => {
+  const handleAfterSubmit = (success) => {
     // Close Modal
-    setOpenAddModal(false);
+    if (success) {
+      setOpenAddModal(false);
+    }
   }
 
   return (
