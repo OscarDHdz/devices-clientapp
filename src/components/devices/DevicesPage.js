@@ -1,14 +1,32 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import DeviceContext from './DeviceContext';
+import DeviceModal from './DeviceModal';
 import DevicesList from './DevicesList';
 
 const DevicesPage = ( ) => {
   const deviceContext = useContext(DeviceContext);
 
+  // Hooks
+  const [openAddModal, setOpenAddModal] = useState(false);
+
+
+  const handleAfterSubmit = (data) => {
+    console.log('Should Submit', data);
+    // Close Modal
+    setOpenAddModal(false);
+  }
+
   return (
     <Fragment>
+      <DeviceModal
+        open={openAddModal}
+        onClose={() => setOpenAddModal(false)}
+        afterSubmit={handleAfterSubmit}
+      >
+
+      </DeviceModal>
       <div>
-        <button style={{float: 'right'}}>Add New Device</button>
+        <button style={{float: 'right'}} onClick={() => setOpenAddModal(true)} >Add New Device</button>
         <h1>Devices</h1>
       </div>
       <DevicesList

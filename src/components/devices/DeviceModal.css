@@ -1,0 +1,25 @@
+.modalMask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  width: 100vw;
+  height: 100vh;
+}
+
+.modalContainerPivot {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+}
+.modalContainer {
+  position: absolute;
+  top: 0%;
+  background-color: white;
+  width: 550px;
+  padding: 20px;
+  left: -295px; /* Width / 2  + padding*/
+  height: 250px;
+
+
+}

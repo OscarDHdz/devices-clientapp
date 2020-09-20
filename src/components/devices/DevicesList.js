@@ -49,8 +49,9 @@ const DevicesList = ({devices = []}) => {
             value={typeFilter}
             onChange={event => setTypeFilter(event.target.value)}
           >
+            <option key="" value="">All</option>
             {
-              deviceContext.filterOptions.map(opt => (<option key={opt.value} value={opt.value}>{opt.display}</option>))
+              deviceContext.systemTypes.map(opt => (<option key={opt.value} value={opt.value}>{opt.display}</option>))
             }
           </select>
         </div>

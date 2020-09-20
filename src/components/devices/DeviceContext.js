@@ -9,8 +9,7 @@ const DeviceContext = createContext({
 export const DeviceContextProvider = (props) => {
   const [devices, setDevices] = useState([]);
   const [shouldGetDevices, setShouldGetDevices] = useState(true);
-  const [filterOptions] = useState([
-    { value: '', display: 'All' },
+  const [systemTypes] = useState([
     { value: 'WINDOWS_WORKSTATION', display: 'Windows Workstation' },
     { value: 'MAC', display: 'Mac' },
     { value: 'WINDOWS_SERVER', display: 'Windows Server' }
@@ -45,10 +44,29 @@ export const DeviceContextProvider = (props) => {
   }, [shouldGetDevices]);
 
 
+  const addDevice = async (payload) => {
+    const response = await fetch('http://localhost:3000/devices', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json'
+      } 
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    // Automatically refresh all context data
+    setShouldGetDevices(true);
+
+    return data;
+  }
+
+
 
   return (
     <DeviceContext.Provider value={{
-      devices, filterOptions, sortOptions
+      devices, systemTypes, sortOptions, addDevice
 
     }}>
       {props.children}
