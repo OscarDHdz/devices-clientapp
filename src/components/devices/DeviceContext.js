@@ -35,7 +35,6 @@ export const DeviceContextProvider = (props) => {
             throw new Error(response.statusText);
           }
           const fetchedDevices = await response.json();
-          console.log('Got this;', fetchedDevices)
           setDevices(fetchedDevices);
         } catch (err) {
           console.error('Failed to Get Devices:', err);
@@ -44,7 +43,7 @@ export const DeviceContextProvider = (props) => {
       }
       fetchDevices();
     }
-  }, [shouldGetDevices]);
+  }, [shouldGetDevices, configContext.baseUrl]);
 
   /**
    * Async call for adding a Device to API
