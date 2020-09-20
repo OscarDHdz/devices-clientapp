@@ -4,8 +4,10 @@ import DevicesList from './DevicesList';
 const DevicesPage = ( ) => {
   return (
     <Fragment>
-
-      <button>Add New Device</button>
+      <div>
+        <button style={{float: 'right'}}>Add New Device</button>
+        <h1>Devices</h1>
+      </div>
       <DevicesList></DevicesList>
 
     </Fragment>

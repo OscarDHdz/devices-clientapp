@@ -1,0 +1,7 @@
+.deviceListToolbar {
+  padding: 14px 0px;
+}
+.deviceListToolbar div {
+  display: inline-block;
+  margin-right: 14px;
+}
