@@ -3,7 +3,6 @@ import { sortObjectsFn } from '../../utils/sort';
 import Alert from '../common/Alert';
 import Device from './Device';
 import DeviceContext from './DeviceContext';
-import './DeviceList.css';
 import DeviceModal from './DeviceModal';
 import DeviceListToolbar from './DevicesListToolbar';
 

@@ -1,0 +1,43 @@
+.deviceListToolbar {
+  padding: 14px 0px;
+}
+.deviceListToolbar {
+  margin-right: 14px;
+}
+
+.deviceListToolbar .deviceListFilterField,
+.deviceListToolbar .deviceListSortByField  {
+  display: inline-block;
+  width: 50%;
+}
+
+/* deviceListFilterField  */
+.deviceListToolbar .deviceListFilterField table {
+  width: 100%;
+}
+.deviceListToolbar .deviceListFilterField table .labelCell {
+  width: 130px;
+}
+.deviceListToolbar .deviceListFilterField table select {
+  width: 100%;
+}
+
+/* deviceListSortByField */
+.deviceListToolbar .deviceListSortByField table {
+  width: 100%;
+}
+.deviceListToolbar .deviceListSortByField table .labelCell {
+  width: 60px;
+}
+.deviceListToolbar .deviceListSortByField select {
+  width: 100%;
+}
+.deviceListToolbar .deviceListSortByField button {
+  width: 100%;
+}
+
+
+.deviceListToolbar .filterBadges {
+  display: flex;
+  margin-top: 7px;
+}

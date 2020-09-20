@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { sortObjectsFn } from '../../utils/sort';
+import sort, { sortObjectsFn } from '../../utils/sort';
 import Badge from '../common/Badge';
 import DeviceContext from './DeviceContext';
+import './DeviceListToolbar.css';
 
 const DeviceListToolbar = ({onCrieriaChange}) => {
   const deviceContext = useContext(DeviceContext);
@@ -9,7 +10,7 @@ const DeviceListToolbar = ({onCrieriaChange}) => {
   // Hooks
   const [typeFilter, setTypeFilter] = useState([]);
   const [sortBy, setSortBy] = useState('');
-  const [sortDirection] = useState('asc');
+  const [sortDirection, setSortDirection] = useState('asc');
 
   /**
    * Effect to propagate criteria change to parent
@@ -54,48 +55,90 @@ const DeviceListToolbar = ({onCrieriaChange}) => {
     return availableFilters;
   }
 
+  const availableFilterOpts = getAvailableFilterOpts();
+
 
 
   return (
           
 
     <div className="deviceListToolbar">
-    <div className="deviceListFilterField">
-      <label>Filter Device Type:</label>
-      <select 
-        value={''}
-        onChange={handleFilterChange}
-      >
-        <option key="" value=""></option>
-        {
-          getAvailableFilterOpts().map(opt => (<option key={opt.value} value={opt.value}>{opt.display}</option>))
-        }
-      </select>
-    </div>
-    <div className="deviceListSortByField">
+      <div className="toolbarFields">
 
-      <label>Sort By:</label>
-      <select value={sortBy}
-        onChange={event => setSortBy(event.target.value)}
-      >
-        {
-          deviceContext.sortOptions.map(opt => (<option key={opt.value} value={opt.value}>{opt.display}</option>))
-        }
-      </select>
+        <div className="deviceListFilterField">
 
-    </div>
-    
-    {
-      typeFilter.length > 0 ?
-      typeFilter.map(filter => (
-        <Badge key={filter} onClick={() => handleBadgeRemove(filter)}>
-          {deviceContext.systemTypes.find(item => item.value === filter).display}
-        </Badge>
-      ))
-      : ''
-    }
+          <table>
+            <tbody>
+              <tr>
+                <td className="labelCell">
+                  <label>Filter Device Type:</label>
+                </td>
+                <td>
+                  <select 
+                    value={''}
+                    onChange={handleFilterChange}
+                    disabled={availableFilterOpts.length === 0}
+                  >
+                    <option key="" value=""></option>
+                    {
+                      availableFilterOpts.map(opt => (<option key={opt.value} value={opt.value}>{opt.display}</option>))
+                    }
+                  </select>
+                  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div className="deviceListSortByField">
+
+          <table>
+            <tbody>
+              <tr>
+                <td className="labelCell">
+                  <label>Sort By:</label>
+                </td>
+                <td>
+                  <select value={sortBy}
+                    onChange={event => setSortBy(event.target.value)}
+                  >
+                    {
+                      deviceContext.sortOptions.map(opt => (<option key={opt.value} value={opt.value}>{opt.display}</option>))
+                    }
+                  </select>
+                  
+                </td>
+                <td>
+                  <button disabled={!sortBy} onClick={() => setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')}>
+                    {sortDirection === 'asc' ? '↓' : '↑'}
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+
+      </div>
+
+      
+
+      <div className="filterBadges">
+        {
+          typeFilter.length > 0 ?
+          typeFilter.map(filter => (
+            <Badge key={filter} onClick={() => handleBadgeRemove(filter)}>
+              {deviceContext.systemTypes.find(item => item.value === filter).display}
+            </Badge>
+          ))
+          : ''
+        }
+
+      </div>
   
-  </div>
+    </div>
   
   )
 }

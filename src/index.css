@@ -72,3 +72,9 @@ button:disabled:hover {
   color: rgb(231, 229, 229);
   background-color: rgb(182, 182, 182);;
 }
+
+
+input,
+select {
+  height: 2em;
+}
