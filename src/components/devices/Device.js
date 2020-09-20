@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import './Device.css';
 
-const Device = ({data, onEditClick, onDeleteClick}) => {
-  const {id, system_name, type, hdd_capacity} = data;
+const Device = ({device, onEditClick, onDeleteClick}) => {
+  const {id, system_name, type, hdd_capacity} = device;
   return (
     <Fragment>
       <div className="card">
@@ -23,11 +23,11 @@ const Device = ({data, onEditClick, onDeleteClick}) => {
         <div  className="cardActions">
 
           <button className="cardActionButton"
-            onClick={() => onEditClick(data)}>
+            onClick={() => onEditClick(device)}>
             Edit
           </button>
           <button className="cardActionButton"
-            onClick={() => onDeleteClick(data)}>
+            onClick={() => onDeleteClick(device)}>
             Delete
           </button>
 
