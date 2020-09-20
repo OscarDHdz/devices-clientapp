@@ -1,21 +1,9 @@
 import React, { Fragment, useContext, useState } from 'react';
+import { sortObjectsFn } from '../../utils/sort';
 import Alert from '../common/Alert';
 import Device from './Device';
 import DeviceContext from './DeviceContext';
 import './DeviceList.css';
-
-const sortObjByKeyDesc = (objA, objB, key) => {
-  const valA = objA[key];
-  const valB = objB[key];
-  if (valA < valB) return -1;
-  if (valA > valB) return 1;
-  return 0;
-}
-const sortObjectsFn = (objA, objB, key, direction) => {
-  const sortVal = sortObjByKeyDesc(objA, objB, key);
-  if (direction === 'asc') return sortVal;
-  else return -sortVal;
-}
 
 const DevicesList = ({devices = []}) => {
   const deviceContext = useContext(DeviceContext);
