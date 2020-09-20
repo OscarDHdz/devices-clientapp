@@ -92,9 +92,7 @@ const DeviceModal = (props) => {
         open ?
         (
           <div className="modal">
-            <div className="modalMask" onClick={onClose}>
-              asad
-            </div>
+            <div className="modalMask" onClick={onClose}></div>
             <div className="modalContainerPivot">
               <div className="modalContainer">
 

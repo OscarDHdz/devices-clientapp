@@ -35,11 +35,11 @@ const Device = ({device, onEditClick, onDeleteClick}) => {
         </div>
         <div  className="cardActions">
 
-          <button className="cardActionButton danger"
+          <button className="cardActionButton primary"
             onClick={() => onEditClick(device)}>
             Edit
           </button>
-          <button className="cardActionButton primary"
+          <button className="cardActionButton danger "
             onClick={() => onDeleteClick(device)}>
             Delete
           </button>
