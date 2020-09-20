@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import sort, { sortObjectsFn } from '../../utils/sort';
+import { sortObjectsFn } from '../../utils/sort';
 import Badge from '../common/Badge';
-import DeviceContext from './DeviceContext';
+import ConfigContext from '../common/ConfigContext';
 import './DeviceListToolbar.css';
 
 const DeviceListToolbar = ({onCrieriaChange}) => {
-  const deviceContext = useContext(DeviceContext);
+  // Context
+  const configContext = useContext(ConfigContext);
 
   // Hooks
   const [typeFilter, setTypeFilter] = useState([]);
@@ -46,7 +47,7 @@ const DeviceListToolbar = ({onCrieriaChange}) => {
    */
   const getAvailableFilterOpts = () => {
     const availableFilters = [];
-    for (const opt of deviceContext.systemTypes) {
+    for (const opt of configContext.systemTypes) {
       if ( typeFilter.indexOf(opt.value)  === -1 ) {
         availableFilters.push(opt);
       }
@@ -54,10 +55,7 @@ const DeviceListToolbar = ({onCrieriaChange}) => {
     availableFilters.sort((a, b) => sortObjectsFn(a, b, 'value', 'asc'));
     return availableFilters;
   }
-
   const availableFilterOpts = getAvailableFilterOpts();
-
-
 
   return (
           
@@ -104,7 +102,7 @@ const DeviceListToolbar = ({onCrieriaChange}) => {
                     onChange={event => setSortBy(event.target.value)}
                   >
                     {
-                      deviceContext.sortOptions.map(opt => (<option key={opt.value} value={opt.value}>{opt.display}</option>))
+                      configContext.sortOptions.map(opt => (<option key={opt.value} value={opt.value}>{opt.display}</option>))
                     }
                   </select>
                   
@@ -130,7 +128,7 @@ const DeviceListToolbar = ({onCrieriaChange}) => {
           typeFilter.length > 0 ?
           typeFilter.map(filter => (
             <Badge key={filter} onClick={() => handleBadgeRemove(filter)}>
-              {deviceContext.systemTypes.find(item => item.value === filter).display}
+              {configContext.systemTypes.find(item => item.value === filter).display}
             </Badge>
           ))
           : ''

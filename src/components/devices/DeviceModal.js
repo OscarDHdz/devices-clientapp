@@ -1,12 +1,14 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
+import ConfigContext from '../common/ConfigContext';
 import DeviceContext from './DeviceContext';
 import './DeviceModal.css';
 
 const DeviceModal = (props) => {
   const {open, device, afterSubmit, onClose} = props;
 
+  // Context
   const deviceContext = useContext(DeviceContext);
-
+  const configContext = useContext(ConfigContext);
 
   // Hooks
   const [name, setName] = useState('');
@@ -127,7 +129,7 @@ const DeviceModal = (props) => {
                       >
                       <option key="" value=""></option>
                         {
-                          deviceContext.systemTypes.map(type => (
+                          configContext.systemTypes.map(type => (
                             <option key={type.value} value={type.value}>{type.display}</option>
                           ))
                         }

@@ -7,6 +7,7 @@ import DeviceModal from './DeviceModal';
 import DeviceListToolbar from './DevicesListToolbar';
 
 const DevicesList = ({devices = []}) => {
+  // Context
   const deviceContext = useContext(DeviceContext);
 
   // Hooks
@@ -31,23 +32,33 @@ const DevicesList = ({devices = []}) => {
     }
   }
 
+  /**
+   * Handle for editting a device - Opens modal and sets its data
+   * @param {object} deviceToEdit 
+   */
   const handleDeviceEdit = (deviceToEdit) => {
     console.log('Device edit', deviceToEdit);
     setDeviceToEdit(deviceToEdit);
     setOpenEditModal(true);
   }
 
+  /**
+   * Handler after edit modal submit - Closes modal and resets modal data
+   * @param {object} data 
+   */
   const handleAfterSubmit = (data) => {
     // Close Modal
     setOpenEditModal(false);
     setDeviceToEdit(null);
   }
 
-  // Handler for toolbar filter/sort/direction
+  /**
+   * Handler for toolbar filter/sort/direction
+   * @param {{sortBy: string, typeFilter: string[], sortDirection: string}} criteria 
+   */
   const handleCriteriaChange = (criteria) => {
     setViewCriteria(criteria);
   }
-
 
   /**
    * This function returns what should be visible on screen depending on 
@@ -67,7 +78,6 @@ const DevicesList = ({devices = []}) => {
     }
     return devicesToDisplay;
   }
-
   const visibleDevices = getVisibleDevices();
 
   return (

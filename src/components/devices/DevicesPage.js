@@ -4,12 +4,16 @@ import DeviceModal from './DeviceModal';
 import DevicesList from './DevicesList';
 
 const DevicesPage = ( ) => {
+  // Context
   const deviceContext = useContext(DeviceContext);
 
   // Hooks
   const [openAddModal, setOpenAddModal] = useState(false);
 
-
+  /**
+   * After Add modal submit
+   * @param {boolean} success - true if submit was successful
+   */
   const handleAfterSubmit = (success) => {
     // Close Modal
     if (success) {

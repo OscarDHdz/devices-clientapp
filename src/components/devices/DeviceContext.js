@@ -1,4 +1,5 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import ConfigContext from '../common/ConfigContext';
 
 const DeviceContext = createContext({
   devices: [],
@@ -10,19 +11,12 @@ const DeviceContext = createContext({
 });
 
 export const DeviceContextProvider = (props) => {
+  // Context
+  const configContext = useContext(ConfigContext);
+
+  // Hooks
   const [devices, setDevices] = useState([]);
   const [shouldGetDevices, setShouldGetDevices] = useState(true);
-  const [systemTypes] = useState([
-    { value: 'WINDOWS_WORKSTATION', display: 'Windows Workstation' },
-    { value: 'MAC', display: 'Mac' },
-    { value: 'WINDOWS_SERVER', display: 'Windows Server' }
-  ]);
-  const [sortOptions] = useState([
-    { value: '', display: '-' },
-    { value: 'hdd_capacity', display: 'HDD Capacity' },
-    { value: 'system_name', display: 'System Name' }
-  ]);
-  
   
   /** 
    * Effect that fetches all devices from API
@@ -31,7 +25,7 @@ export const DeviceContextProvider = (props) => {
     if (shouldGetDevices) {
       const fetchDevices = async () => {
         try {
-          const response = await fetch('http://localhost:3000/devices', {
+          const response = await fetch(`${configContext.baseUrl}/devices`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -58,7 +52,7 @@ export const DeviceContextProvider = (props) => {
    */
   const addDevice = async (payload) => {
     try {
-      const response = await fetch('http://localhost:3000/devices', {
+      const response = await fetch(`${configContext.baseUrl}/devices`, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
@@ -93,7 +87,7 @@ export const DeviceContextProvider = (props) => {
    */
   const updateDevice = async (id, payload) => {
     try {
-      const response = await fetch(`http://localhost:3000/devices/${id}`, {
+      const response = await fetch(`${configContext.baseUrl}/devices/${id}`, {
         method: 'PUT',
         body: JSON.stringify(payload),
         headers: {
@@ -124,7 +118,7 @@ export const DeviceContextProvider = (props) => {
    */
   const deleteDevice = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/devices/${id}`, {
+      const response = await fetch(`${configContext.baseUrl}/devices/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
@@ -146,7 +140,7 @@ export const DeviceContextProvider = (props) => {
 
   return (
     <DeviceContext.Provider value={{
-      devices, systemTypes, sortOptions, addDevice, updateDevice, deleteDevice
+      devices, addDevice, updateDevice, deleteDevice
 
     }}>
       {props.children}
