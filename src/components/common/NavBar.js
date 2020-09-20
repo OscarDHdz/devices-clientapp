@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
+import './NavBar.css';
 
 const NavBar = () => {
 
   return (
     <Fragment>
-      <div>
-        Navbar works!
+      <div className="navBar">
+        <span className="navBarTitle">Devices App</span>
       </div>
-      <hr/>
     </Fragment>
   )
 

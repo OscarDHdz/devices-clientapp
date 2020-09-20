@@ -7,7 +7,7 @@ const DevicesPage = ( ) => {
   const deviceContext = useContext(DeviceContext);
 
   // Hooks
-  const [openAddModal, setOpenAddModal] = useState(true);
+  const [openAddModal, setOpenAddModal] = useState(false);
 
 
   const handleAfterSubmit = (success) => {

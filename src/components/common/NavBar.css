@@ -1,0 +1,10 @@
+.navBar {
+  background-color: #2130c3;
+  color: white;
+  padding: 14px;
+  position: sticky;
+}
+
+.navBarTitle {
+  font-weight: bolder;;
+}
