@@ -6,3 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.layout-content {
+  margin-top: 21px;
+  margin-left: 5%;
+  margin-right: 5%;
+}

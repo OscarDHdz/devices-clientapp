@@ -1,8 +1,12 @@
 import React from 'react';
+import Layout from './components/common/Layout';
+import DevicesPage from './components/devices/DevicesPage';
 
 function App() {
   return (
-    <h1>App Works!</h1>
+    <Layout>
+      <DevicesPage></DevicesPage>
+    </Layout>
   );
 }
 
