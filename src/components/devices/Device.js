@@ -5,14 +5,10 @@ const addComaToNumber = (value) => {
   const strVal = `${value}`;
   let strOut = '';
   for (let i = strVal.length - 1, j = 0; i >= 0; i--, j++) {
-
-
     strOut = strVal[i] + ( j !== 0 && j % 3 === 0 ? ',' : '') + strOut;
-    
   }
   return strOut;
 }
-
 
 const Device = ({device, onEditClick, onDeleteClick}) => {
   const {id, system_name, type, hdd_capacity} = device;
@@ -35,11 +31,11 @@ const Device = ({device, onEditClick, onDeleteClick}) => {
         </div>
         <div  className="cardActions">
 
-          <button className="cardActionButton primary"
+          <button className="editBtn cardActionButton primary"
             onClick={() => onEditClick(device)}>
             Edit
           </button>
-          <button className="cardActionButton danger "
+          <button className="deleteBtn cardActionButton danger "
             onClick={() => onDeleteClick(device)}>
             Delete
           </button>

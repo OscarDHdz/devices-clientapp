@@ -34,5 +34,9 @@ This projects runs unit test using [Jest](https://jestjs.io/). To execute the su
 ```
 npm test
 ```
+Or if you need a coverage report, use:
+```
+npm run test -- --coverage
+```
 
 
