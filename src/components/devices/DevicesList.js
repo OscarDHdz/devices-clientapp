@@ -91,7 +91,7 @@ const DevicesList = ({devices = []}) => {
 
 
       <DeviceListToolbar
-        onCrieriaChange={handleCriteriaChange}
+        onCriteriaChange={handleCriteriaChange}
       >
 
       </DeviceListToolbar>

@@ -4,7 +4,7 @@ import Badge from '../common/Badge';
 import ConfigContext from '../common/ConfigContext';
 import './DeviceListToolbar.css';
 
-const DeviceListToolbar = ({onCrieriaChange}) => {
+const DeviceListToolbar = ({onCriteriaChange}) => {
   // Context
   const configContext = useContext(ConfigContext);
 
@@ -17,7 +17,7 @@ const DeviceListToolbar = ({onCrieriaChange}) => {
    * Effect to propagate criteria change to parent
    */
   useEffect(() => {
-    onCrieriaChange({
+    onCriteriaChange({
       typeFilter, sortBy, sortDirection
     })
   }, [typeFilter, sortBy, sortDirection])
